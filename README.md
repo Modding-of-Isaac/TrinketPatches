@@ -1,5 +1,5 @@
 # TrinketPatches
-*Maintained @Martmists*
+*Maintained by @martmists*
 
 TrinketPatches is a mod that adds functions to trinkets to balance them more and make mechanics more interesting. This is my first mod, so any feedback is greatly appreciated!
 

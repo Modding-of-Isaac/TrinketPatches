@@ -176,7 +176,7 @@ end
 local doHeartBonus = false
 local lastHeartStatus = false
 
-local function triggerHeartsBonus() -- Called on MC_POST_PLAYER_UPDATE
+local function triggerHeartsBonus()
     local player = Isaac.GetPlayer(0)
     
     local red = player:GetHearts() - player:GetBoneHearts()  -- Bone hearts are red hearts too, but we exclude these
@@ -193,7 +193,7 @@ local function triggerHeartsBonus() -- Called on MC_POST_PLAYER_UPDATE
     lastHeartStatus = currentHeartStatus
 end
 
-local function heartsBonus(_, player, _)  -- Called on MC_EVALUATE_CACHE
+local function heartsBonus(_, player, _)
     if doHeartBonus and player:HasTrinket(TrinketType.TRINKET_EQUALITY) then
         player.Damage = player.Damage + 0.1
         player.MoveSpeed = player.MoveSpeed + 0.1
@@ -205,7 +205,7 @@ local function heartsBonus(_, player, _)  -- Called on MC_EVALUATE_CACHE
 end
 
 -- Bob's Bladder
-local function bobTear(_, tear) -- MC_POST_FIRE_TEAR
+local function bobTear(_, tear)
     local player = Isaac.GetPlayer(0)
     
     if player:HasTrinket(TrinketType.TRINKET_BOBS_BLADDER) then
@@ -213,8 +213,7 @@ local function bobTear(_, tear) -- MC_POST_FIRE_TEAR
             tear.FallingSpeed = -11
             tear.FallingAcceleration = 0.6
             tear.TearFlags = tear.TearFlags | TearFlags.TEAR_EXPLOSIVE
-			tear:SetColor(Color(0.5, 0.89, 0.4, 1, 0, 0, 0), -1, 0, false, false)
-			-- tear:Remove() -- Remove old tear to cause a replacement effect
+            tear:SetColor(Color(0.5, 0.89, 0.4, 1, 0, 0, 0), -1, 0, false, false)
         end
     end
 end
