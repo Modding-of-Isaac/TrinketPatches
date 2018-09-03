@@ -205,16 +205,16 @@ local function heartsBonus(_, player, _)  -- Called on MC_EVALUATE_CACHE
 end
 
 -- Bob's Bladder
--- TODO
-local function bobTear(_, tear)
+local function bobTear(_, tear) -- MC_POST_FIRE_TEAR
     local player = Isaac.GetPlayer(0)
     
     if player:HasTrinket(TrinketType.TRINKET_BOBS_BLADDER) then
         if chance(5, true) then
-            local newTear = player:FireTear(tear.Position, Vector(math.random(-20, 20), math.random(-20, 20)):Resized(2.5 + math.random(3)), false, true, false)
-            newTear.FallingSpeed = math.random(-26, -12)
-            newTear.FallingAcceleration = 2 * (1 + math.random() * 0.5)
-            newTear.TearFlags = newTear.TearFlags | TearFlags.TEAR_EXPLOSIVE
+            tear.FallingSpeed = -11
+            tear.FallingAcceleration = 0.6
+            tear.TearFlags = tear.TearFlags | TearFlags.TEAR_EXPLOSIVE
+			tear:SetColor(Color(0.5, 0.89, 0.4, 1, 0, 0, 0), -1, 0, false, false)
+			-- tear:Remove() -- Remove old tear to cause a replacement effect
         end
     end
 end
