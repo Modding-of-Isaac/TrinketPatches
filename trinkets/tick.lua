@@ -1,9 +1,9 @@
 local function removeTick(_, tookDamage, damageAmount, damageFlag, damageSource, damageCountdown)
-    local player = Isaac.GetPlayer(0)
+    local player = tookDamage:ToPlayer()
     TrinketPatches.log(damageFlag)
 
-    if player:HasTrinket(TrinketType.TRINKET_TICK) then
-        if tookDamage.Type == EntityType.ENTITY_PLAYER and damageSource.Type == EntityType.ENTITY_FIREPLACE then
+    if player ~= nil and player:HasTrinket(TrinketType.TRINKET_TICK) then
+        if damageSource.Type == EntityType.ENTITY_FIREPLACE then
             TrinketPatches.log("Player took damage from fire")
             player:DropTrinket(player.Position, true)
         end

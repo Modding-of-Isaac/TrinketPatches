@@ -1,6 +1,5 @@
 local silverRoomRoom = nil
 local silverLastRoom = nil
-local enteredWithSilverDollar = false
 
 local function silverRoomChange()
     silverLastRoom = silverRoomRoom
@@ -10,7 +9,7 @@ local function silverRoomChange()
         return
     end
 
-    if enteredWithSilverDollar and silverRoomRoom:GetType() == RoomType.ROOM_SHOP then
+    if TrinketPatches.config.dollar and silverRoomRoom:GetType() == RoomType.ROOM_SHOP then
         local level = TrinketPatches.game:GetLevel()
         if not (level:GetStage() == LevelStage.STAGE4_1 or level:GetStage() == LevelStage.STAGE4_2) then
             local target = level:GetPreviousRoomIndex()
@@ -28,9 +27,9 @@ local function silverFloorChange()
     local player = Isaac.GetPlayer(0)
 
     if player:HasTrinket(TrinketType.TRINKET_SILVER_DOLLAR) then
-        enteredWithSilverDollar = true
+        TrinketPatches.config.dollar = true
     else
-        enteredWithSilverDollar = false
+        TrinketPatches.config.dollar = false
     end
 end
 

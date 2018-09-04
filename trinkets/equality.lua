@@ -53,6 +53,6 @@ local function heartsBonus(_, player, _)
 end
 
 return {
-    MC_EVALUEATE_CACHE = heartsBonus,
+    MC_EVALUATE_CACHE = heartsBonus,
     MC_POST_PLAYER_UPDATE = triggerHeartsBonus
 }

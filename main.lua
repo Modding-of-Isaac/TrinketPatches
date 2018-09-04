@@ -1,9 +1,11 @@
 TrinketPatches = {
     mod = RegisterMod("TrinketPatches", 1),
+	
+	debug = true,
 
     log = function(text)
-        if debug then
-            print("[TP]"..text.tostring())
+        if TrinketPatches.debug then
+            print("[TP] "..tostring(text))
         end
     end,
 
@@ -19,14 +21,31 @@ TrinketPatches = {
         end
     end,
 
-    game = Game()
+    game = Game(),
+	
+	config = require("config.lua")
 }
 
+TrinketPatches.mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, TrinketPatches.config.load)
+TrinketPatches.mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, TrinketPatches.config.save)
+
+require("eid.lua")
+
 local files = {
-    "trinkets.lua",
-    "eid.lua"
+	"bloody_crown.lua",
+    "bobs_bladder.lua",
+    "cancer.lua",
+    "equality.lua",
+    "match_stick.lua",
+    "moms_locket.lua",
+    "silver_dollar.lua",
+    "stem_cell.lua",
+    "tick.lua",
 }
 
 for _, file in pairs(files) do
-    require(file)
+    local funcs = require("trinkets/"..file)
+    for fname, func in pairs(funcs) do
+        TrinketPatches.mod:AddCallback(ModCallbacks[fname], func)
+    end
 end

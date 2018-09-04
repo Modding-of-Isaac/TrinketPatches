@@ -1,6 +1,5 @@
 local bloodyRoomRoom = nil
 local bloodyLastRoom = nil
-local enteredWithBloodyCrown = false
 
 local function bloodyRoomChange()
     bloodyLastRoom = bloodyRoomRoom
@@ -10,7 +9,7 @@ local function bloodyRoomChange()
         return
     end
 
-    if enteredWithBloodyCrown and bloodyRoomRoom:GetType() == RoomType.ROOM_TREASURE then
+    if TrinketPatches.config.crown and bloodyRoomRoom:GetType() == RoomType.ROOM_TREASURE then
         local level = TrinketPatches.game:GetLevel()
         if not (level:GetStage() == LevelStage.STAGE4_1 or level:GetStage() == LevelStage.STAGE4_2) then
             local target = level:GetPreviousRoomIndex()
@@ -28,9 +27,9 @@ local function bloodyFloorChange()
     local player = Isaac.GetPlayer(0)
 
     if player:HasTrinket(TrinketType.TRINKET_BLOODY_CROWN) then
-        enteredWithBloodyCrown = true
+        TrinketPatches.config.crown = true
     else
-        enteredWithBloodyCrown = false
+        TrinketPatches.config.crown = false
     end
 end
 
