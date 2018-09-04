@@ -13,11 +13,13 @@ Features:
 - Stem Cell removes a soul or black heart on every new floor, if the player has any.
 - Equality now checks if you have the same amount of red, soul and black hearts, and gives an all stats up as result.
 - Bob's Bladder gives a 5% (+5% for every luck up) to fire an Ipecac tear.
+- Tick can be burnt off by walking into fires
+- Match Stick deals an additional heart of damage when walking into fires
 
 EID support included!
 Default descriptions will get overridden to match the new ones.
 This is compatible with any used language, but added descriptions will only be in english.</description>
-    <version>1.5</version>
+    <version>1.6</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Trinkets"/>

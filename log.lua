@@ -1,4 +1,4 @@
-local debug = true
+local debug = false
 
 local log = {
     debug = function(text)

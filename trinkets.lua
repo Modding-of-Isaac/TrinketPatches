@@ -210,10 +210,36 @@ local function bobTear(_, tear)
     
     if player:HasTrinket(TrinketType.TRINKET_BOBS_BLADDER) then
         if chance(5, true) then
+			-- Change into Ipecac tear
             tear.FallingSpeed = -11
             tear.FallingAcceleration = 0.6
             tear.TearFlags = tear.TearFlags | TearFlags.TEAR_EXPLOSIVE
             tear:SetColor(Color(0.5, 0.89, 0.4, 1, 0, 0, 0), -1, 0, false, false)
+        end
+    end
+end
+
+-- Tick
+local function removeTick(_, tookDamage, damageAmount, damageFlag, damageSource, damageCountdown)
+    local player = Isaac.GetPlayer(0)
+	log.debug(damageFlag)
+    
+    if player:HasTrinket(TrinketType.TRINKET_TICK) then
+        if tookDamage.Type == EntityType.ENTITY_PLAYER and damageSource.Type == EntityType.ENTITY_FIREPLACE then
+            log.debug("Player took damage from fire")
+            player:DropTrinket(player.Position, true)
+        end
+    end
+end
+
+-- Match Stick
+local function damageMatchStick(_, tookDamage, damageAmount, damageFlag, damageSource, damageCountdown)
+    local player = Isaac.GetPlayer(0)
+    
+    if player:HasTrinket(TrinketType.TRINKET_MATCH_STICK) then
+        if tookDamage.Type == EntityType.ENTITY_PLAYER and damageSource.Type == EntityType.ENTITY_FIREPLACE then
+            log.debug("Player took damage from fire")
+            player:TakeDamage(2, 0, damageSource, 1)
         end
     end
 end
@@ -240,7 +266,7 @@ local function registerEID()
         for _,registered in pairs(trinketdescriptions) do
             if registered[1] == entry[1] then
                 -- Replace to ensure the old description is saved
-                local replaced = string.gsub(entry[2], "+...", registered[2])
+                local replaced = string.gsub(entry[2], "+...", registered[2]:gsub("%% ", "%%%%"))
                 -- log.debug(registered[2].." -> "..replaced)
                 registered[2] = replaced
             end
@@ -278,8 +304,10 @@ table.insert(TrinketCallbacks.MC_POST_NEW_LEVEL, stemSwitch)
 table.insert(TrinketCallbacks.MC_EVALUATE_CACHE, heartsBonus)
 table.insert(TrinketCallbacks.MC_POST_PLAYER_UPDATE, triggerHeartsBonus)
 
-
 table.insert(TrinketCallbacks.MC_POST_FIRE_TEAR, bobTear)
+
+table.insert(TrinketCallbacks.MC_ENTITY_TAKE_DMG, removeTick)
+table.insert(TrinketCallbacks.MC_ENTITY_TAKE_DMG, damageMatchStick)
 ------
 
 table.insert(TrinketCallbacks.MC_POST_GAME_STARTED, registerEID)
