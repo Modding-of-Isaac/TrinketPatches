@@ -28,9 +28,10 @@ local function registerEID()
         for _,registered in pairs(trinketdescriptions) do
             if registered[1] == entry[1] then
                 -- Replace to ensure the old description is saved
-                local replaced = string.gsub(entry[2], "+...", registered[2]:gsub("%% ", "%%%% "))
+				local replaced = string.gsub(registered[2], "%% ", "%%%% ")
+                local final = string.gsub(entry[2], "+...", replaced)
                 -- log.debug(registered[2].." -> "..replaced)
-                registered[2] = replaced
+                registered[2] = final
             end
         end
     end

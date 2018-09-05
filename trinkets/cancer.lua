@@ -10,3 +10,5 @@ function()
         player:TakeDamage(1, 0, EntityRef(player), 0)
     end
 end
+
+err()

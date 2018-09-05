@@ -10,3 +10,5 @@ function(_, tookDamage, damageAmount, damageFlag, damageSource, damageCountdown)
         end
     end
 end
+
+err()

@@ -36,3 +36,5 @@ function()
         TrinketPatches.config.dollar = false
     end
 end
+
+err()

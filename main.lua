@@ -15,7 +15,7 @@ TrinketPatches.mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function() Tri
 TrinketPatches.mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function() TrinketPatches.config:save() end)
 
 -- Load EID entries
-require("eid.lua")
+pcall(require, "eid.lua")
 
 local files = {
     "bloody_crown.lua",
@@ -26,10 +26,10 @@ local files = {
     "moms_locket.lua",
     "silver_dollar.lua",
     "stem_cell.lua",
-    "tick.lua",
+    "tick.lua"
 }
 
 -- Load all trinket effects
 for _, file in pairs(files) do
-    require("trinkets/"..file)
+    pcall(require, "trinkets/"..file)
 end

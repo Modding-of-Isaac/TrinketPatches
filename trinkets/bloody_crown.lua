@@ -36,3 +36,5 @@ function()
         TrinketPatches.config.crown = false
     end
 end
+
+err()

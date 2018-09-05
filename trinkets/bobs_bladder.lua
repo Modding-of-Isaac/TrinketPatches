@@ -13,3 +13,5 @@ function(_, tear)
         end
     end
 end
+
+err()

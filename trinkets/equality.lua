@@ -55,3 +55,5 @@ function(_, player, _)
         player.TearFallingSpeed = player.TearFallingSpeed + 0.1
     end
 end
+
+err()
