@@ -1,7 +1,8 @@
 local silverRoomRoom = nil
 local silverLastRoom = nil
 
-local function silverRoomChange()
+TrinketPatches.util.register("MC_POST_NEW_ROOM") ..
+function()
     silverLastRoom = silverRoomRoom
     silverRoomRoom = TrinketPatches.game:GetRoom()
 
@@ -20,7 +21,8 @@ local function silverRoomChange()
     end
 end
 
-local function silverFloorChange()
+TrinketPatches.util.register("MC_POST_NEW_LEVEL") ..
+function()
     silverLastRoom = nil
     silverRoomRoom = TrinketPatches.game:GetRoom()
 
@@ -32,8 +34,3 @@ local function silverFloorChange()
         TrinketPatches.config.dollar = false
     end
 end
-
-return {
-    MC_POST_NEW_ROOM = silverRoomChange,
-    MC_POST_NEW_LEVEL = silverFloorChange
-}

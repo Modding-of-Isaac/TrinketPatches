@@ -1,38 +1,24 @@
 TrinketPatches = {
     mod = RegisterMod("TrinketPatches", 1),
-	
-	debug = true,
 
-    log = function(text)
-        if TrinketPatches.debug then
-            print("[TP] "..tostring(text))
-        end
-    end,
+    debug = true,
 
-    chance = function(x, affectedByLuck)
-        -- Takes percentage, i.e. 20 for 20%
-        if not affectedByLuck then
-            return math.random() < (x / 100)
-        else
-            local player = Isaac.GetPlayer(0)
-            -- +5% chance for every luck up
-            local modifier = x + 5 * player.Luck
-            return math.random() < (x / 100)
-        end
-    end,
+    util = require("utils.lua"),
 
     game = Game(),
-	
-	config = require("config.lua")
+
+    config = require("config.lua")
 }
 
-TrinketPatches.mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, TrinketPatches.config.load)
-TrinketPatches.mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, TrinketPatches.config.save)
+-- Register load/save
+TrinketPatches.mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function() TrinketPatches.config:load() end)
+TrinketPatches.mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function() TrinketPatches.config:save() end)
 
+-- Load EID entries
 require("eid.lua")
 
 local files = {
-	"bloody_crown.lua",
+    "bloody_crown.lua",
     "bobs_bladder.lua",
     "cancer.lua",
     "equality.lua",
@@ -43,9 +29,7 @@ local files = {
     "tick.lua",
 }
 
+-- Load all trinket effects
 for _, file in pairs(files) do
-    local funcs = require("trinkets/"..file)
-    for fname, func in pairs(funcs) do
-        TrinketPatches.mod:AddCallback(ModCallbacks[fname], func)
-    end
+    require("trinkets/"..file)
 end

@@ -1,4 +1,5 @@
-local function stemSwitch()
+TrinketPatches.util.register("MC_POST_NEW_LEVEL") ..
+function()
     local player = Isaac.GetPlayer(0)
 
     if player:HasTrinket(TrinketType.TRINKET_STEM_CELL) then

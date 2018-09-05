@@ -1,7 +1,8 @@
 local bloodyRoomRoom = nil
 local bloodyLastRoom = nil
 
-local function bloodyRoomChange()
+TrinketPatches.util.register("MC_POST_NEW_ROOM") ..
+function()
     bloodyLastRoom = bloodyRoomRoom
     bloodyRoomRoom = TrinketPatches.game:GetRoom()
 
@@ -20,7 +21,8 @@ local function bloodyRoomChange()
     end
 end
 
-local function bloodyFloorChange()
+TrinketPatches.util.register("MC_POST_NEW_LEVEL") ..
+function()
     bloodyLastRoom = nil
     bloodyRoomRoom = TrinketPatches.game:GetRoom()
 
@@ -32,8 +34,3 @@ local function bloodyFloorChange()
         TrinketPatches.config.crown = false
     end
 end
-
-return {
-    MC_POST_NEW_ROOM = bloodyRoomChange,
-    MC_POST_NEW_LEVEL = bloodyFloorChange
-}

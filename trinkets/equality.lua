@@ -24,7 +24,8 @@ local function getBlackHearts(player)
     return blackHearts
 end
 
-local function triggerHeartsBonus()
+TrinketPatches.util.register("MC_POST_PLAYER_UPDATE") ..
+function()
     local player = Isaac.GetPlayer(0)
 
     local red = player:GetHearts() - player:GetBoneHearts()  -- Bone hearts are red hearts too, but we exclude these
@@ -41,7 +42,8 @@ local function triggerHeartsBonus()
     lastHeartStatus = currentHeartStatus
 end
 
-local function heartsBonus(_, player, _)
+TrinketPatches.util.register("MC_EVALUATE_CACHE") ..
+function(_, player, _)
     if doHeartBonus and player:HasTrinket(TrinketType.TRINKET_EQUALITY) then
         player.Damage = player.Damage + 0.1
         player.MoveSpeed = player.MoveSpeed + 0.1
@@ -51,8 +53,3 @@ local function heartsBonus(_, player, _)
         player.TearFallingSpeed = player.TearFallingSpeed + 0.1
     end
 end
-
-return {
-    MC_EVALUATE_CACHE = heartsBonus,
-    MC_POST_PLAYER_UPDATE = triggerHeartsBonus
-}
