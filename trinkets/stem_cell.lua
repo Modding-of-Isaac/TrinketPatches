@@ -1,3 +1,4 @@
+local f =
 TrinketPatches.util.register("MC_POST_NEW_LEVEL") ..
 function()
     local player = Isaac.GetPlayer(0)
@@ -12,7 +13,3 @@ function()
         end
     end
 end
-
-return {
-    MC_POST_NEW_LEVEL = stemSwitch
-}

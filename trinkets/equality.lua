@@ -24,6 +24,7 @@ local function getBlackHearts(player)
     return blackHearts
 end
 
+local f =
 TrinketPatches.util.register("MC_POST_PLAYER_UPDATE") ..
 function()
     local player = Isaac.GetPlayer(0)
@@ -42,6 +43,7 @@ function()
     lastHeartStatus = currentHeartStatus
 end
 
+local f =
 TrinketPatches.util.register("MC_EVALUATE_CACHE") ..
 function(_, player, _)
     if doHeartBonus and player:HasTrinket(TrinketType.TRINKET_EQUALITY) then

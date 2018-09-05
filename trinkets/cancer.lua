@@ -1,3 +1,4 @@
+local f =
 TrinketPatches.util.register("MC_POST_NEW_ROOM") ..
 function()
     local player = Isaac.GetPlayer(0)

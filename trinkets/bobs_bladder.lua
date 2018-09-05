@@ -1,3 +1,4 @@
+local f =
 TrinketPatches.util.register("MC_POST_FIRE_TEAR") ..
 function(_, tear)
     local player = Isaac.GetPlayer(0)

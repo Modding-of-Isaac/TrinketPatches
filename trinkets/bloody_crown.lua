@@ -1,6 +1,7 @@
 local bloodyRoomRoom = nil
 local bloodyLastRoom = nil
 
+local f =
 TrinketPatches.util.register("MC_POST_NEW_ROOM") ..
 function()
     bloodyLastRoom = bloodyRoomRoom
@@ -21,6 +22,7 @@ function()
     end
 end
 
+local f =
 TrinketPatches.util.register("MC_POST_NEW_LEVEL") ..
 function()
     bloodyLastRoom = nil

@@ -1,3 +1,4 @@
+local f =
 TrinketPatches.util.register("MC_ENTITY_TAKE_DMG") ..
 function(_, tookDamage, damageAmount, damageFlag, damageSource, damageCountdown)
     local player = Isaac.GetPlayer(0)

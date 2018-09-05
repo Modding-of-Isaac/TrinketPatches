@@ -1,6 +1,7 @@
 local silverRoomRoom = nil
 local silverLastRoom = nil
 
+local f =
 TrinketPatches.util.register("MC_POST_NEW_ROOM") ..
 function()
     silverLastRoom = silverRoomRoom
@@ -21,6 +22,7 @@ function()
     end
 end
 
+local f =
 TrinketPatches.util.register("MC_POST_NEW_LEVEL") ..
 function()
     silverLastRoom = nil
