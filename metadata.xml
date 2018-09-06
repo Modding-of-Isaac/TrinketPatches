@@ -16,10 +16,13 @@ Features:
 - Tick can be burnt off by walking into fires
 - Match Stick deals an additional heart of damage when walking into fires
 
+New trinkets:
+- Burnt Match has a 5% chance to turn fires into lower-tier fires. (purple -&gt; blue -&gt; orange -&gt; yellow)
+
 EID support included!
 Default descriptions will get overridden to match the new ones.
 This is compatible with any used language, but added descriptions will only be in english.</description>
-    <version>1.7</version>
+    <version>1.8</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Trinkets"/>
