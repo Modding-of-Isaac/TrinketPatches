@@ -1,3 +1,7 @@
+if __eidTrinketDescriptions == nil then
+    __eidTrinketDescriptions = {}
+end
+
 return {
     isFire = function(entityRef)
         return (entityRef.Type == EntityType.ENTITY_FIREPLACE or
@@ -30,6 +34,15 @@ return {
             __concat = function(_, f)
                 TrinketPatches.mod:AddCallback(ModCallbacks[arg], f)
                 return f
+            end
+        })
+    end,
+
+    registerEID = function(description)
+        return setmetatable({description}, {
+            __concat = function(_, item)
+                __eidTrinketDescriptions[item] = description
+                return item
             end
         })
     end

@@ -1,7 +1,7 @@
 TrinketPatches = {
     mod = RegisterMod("TrinketPatches", 1),
 
-    debug = true,
+    debug = false,
 
     util = require("utils.lua"),
 
@@ -20,6 +20,7 @@ pcall(require, "eid.lua")
 local files = {
     "bloody_crown.lua",
     "bobs_bladder.lua",
+    "burnt_match.lua",
     "cancer.lua",
     "equality.lua",
     "match_stick.lua",

@@ -17,6 +17,7 @@ function()
             local target = level:GetPreviousRoomIndex()
             level.EnterDoor = -1
             level.LeaveDoor = -1
+            player:AnimateTeleport(true)
             TrinketPatches.game:StartRoomTransition(target, Direction.NO_DIRECTION, 1)
         end
     end
